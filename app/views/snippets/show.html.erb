@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Library:</b>
+  <%= @snippet.library %>
+</p>
+
+<p>
+  <b>Title:</b>
+  <%= @snippet.title %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @snippet.description %>
+</p>
+
+<p>
+  <b>Language:</b>
+  <%= @snippet.language %>
+</p>
+
+<p>
+  <b>Source:</b>
+
+  <%= code(@snippet.source, @snippet.language).html_safe %>
+</p>
+
+
+<%= link_to 'Edit', edit_snippet_path(@snippet) %> |
+<%= link_to 'Back', snippets_path %>
