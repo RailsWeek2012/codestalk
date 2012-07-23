@@ -23,6 +23,10 @@ end
 gem "coderay"
 gem "RedCloth"
 gem 'jquery-rails'
+gem 'omniauth'
+#gem 'omniauth-openid', :git => 'git://github.com/intridea/omniauth-openid.git'
+gem 'omniauth-github', :git => 'git://github.com/intridea/omniauth-github.git'
+#gem 'omniauth-twitter', :git => 'https://github.com/arunagw/omniauth-twitter.git'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
@@ -37,4 +41,4 @@ gem 'jquery-rails'
 # gem 'capistrano'
 
 # To use debugger
-# gem 'debugger'
+ gem 'debugger'

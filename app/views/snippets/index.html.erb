@@ -27,6 +27,14 @@
 <% end %>
 </table>
 
+<%= user_signed_in? %>
+
+<% if user_signed_in? %>
+    <%= current_user.email %>
+    <%= link_to "Logout", "/logout" %>
+<% else %>
+    <%= link_to "GitHub", "/auth/github" %>
+<% end %>
 <br />
 
 <%= link_to 'New Snippet', new_snippet_path %>
