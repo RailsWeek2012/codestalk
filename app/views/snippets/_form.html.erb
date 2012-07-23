@@ -11,10 +11,10 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :library %><br />
-    <%= f.text_field :library %>
-  </div>
+    <div class="field">
+      <%= f.label :library %><br />
+      <%= f.collection_select :library, Library.all, :id, :title, :prompt => true %>
+    </div>
   <div class="field">
     <%= f.label :title %><br />
     <%= f.text_field :title %>

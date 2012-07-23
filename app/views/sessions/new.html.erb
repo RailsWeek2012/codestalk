@@ -1,2 +1,7 @@
-<h1>Sessions#new</h1>
-<p>Find me in app/views/sessions/new.html.erb</p>
+    <% if user_signed_in? %>
+        Welcome <%= current_user.name %>!
+        <%= link_to "Sign Out", logout_path %>
+    <% else %>
+        <%= link_to "Sign in with GitHub", "/auth/github" %>
+    <% end %>
+

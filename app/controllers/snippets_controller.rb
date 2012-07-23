@@ -1,8 +1,12 @@
 class SnippetsController < ApplicationController
+
+  before_filter :require_login!
+
   # GET /snippets
   # GET /snippets.json
   def index
-    @snippets = Snippet.all
+    @snippets = current_user.snippets.all
+
 
     respond_to do |format|
       format.html # index.html.erb
@@ -18,6 +22,7 @@ class SnippetsController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @snippet }
+      format.xml { render text: @snippet.to_xml }
     end
   end
 
@@ -41,6 +46,7 @@ class SnippetsController < ApplicationController
   # POST /snippets.json
   def create
     @snippet = Snippet.new(params[:snippet])
+    @snippet.user = current_user
 
     respond_to do |format|
       if @snippet.save
@@ -80,4 +86,14 @@ class SnippetsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
+
+  def require_login!
+    unless user_signed_in?
+      redirect_to login_path,
+      alert: "Bitte melden Sie sich zuerst an."
+    end
+  end
+
 end

@@ -1,11 +1,14 @@
 class SessionsController < ApplicationController
+
   def new
+
   end
 
   def create
     auth_hash = request.env['omniauth.auth']
 
     @authorization = Authorization.find_by_provider_and_uid(auth_hash["provider"], auth_hash["uid"])
+
     if @authorization
       redirect_to snippets_path,
       notice: "Welcome back #{@authorization.user.name}! You have already signed up."
@@ -19,6 +22,8 @@ class SessionsController < ApplicationController
       notice: "Hi #{user.name}! You've signed up."
       #render :text => "Hi #{user.name}! You've signed up."
     end
+    session[:user_id] = @authorization.user.id
+
   end
 
   def destroy
@@ -29,6 +34,8 @@ class SessionsController < ApplicationController
   end
 
   def failure
-    render :text => "Sorry, but you didn't allow access to our app!"
+    redirect_to snippets_path,
+    alert: "Sorry, but you didn't allow access to our app!"
+    #render :text => "Sorry, but you didn't allow access to our app!"
   end
 end

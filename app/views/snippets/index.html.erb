@@ -1,40 +1,57 @@
-<h1>Listing snippets</h1>
+<div class="span2">
+  <!--Sidebar content-->
+  <ul class="nav nav-list">
+    <li>
+      <% if user_signed_in? %>
+          <a href="#">
+            <i class="icon-user"></i>Welcome <%= current_user.name %>!
+            <%= link_to '(Logout)', logout_path %>
+          </a>
+      <% else %>
+          <a href="/auth/github">
+            <i class="icon-lock"></i>
+            Login via GitHub
+          </a>
+      <% end %>
 
-<table>
-  <tr>
-    <th>Library</th>
-    <th>Title</th>
-    <th>Description</th>
-    <th>Language</th>
-    <th>Lines</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+    </li>
+  </ul>
 
-<% @snippets.each do |snippet| %>
-  <tr>
-    <td><%= snippet.library %></td>
-    <td><%= snippet.title %></td>
-    <td><%= snippet.description %></td>
-    <td><%= snippet.language %></td>
-    <td><%= codelines(snippet.source) %>
-    </td>
-    <td><%= link_to 'Show', snippet %></td>
-    <td><%= link_to 'Edit', edit_snippet_path(snippet) %></td>
-    <td><%= link_to 'Destroy', snippet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+</div>
+<div class="span10">
+  <!--Body content-->
+  <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>Library</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Language</th>
+        <th>Lines</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @snippets.each do |snippet| %>
+          <tr>
+            <td><%= snippet.library %></td>
+            <td><%= snippet.title %></td>
+            <td><%= snippet.description %></td>
+            <td><%= snippet.language %></td>
+            <td><%= codelines(snippet.source) %>
+            </td>
+            <td><%= link_to 'Show', snippet %></td>
+            <td><%= link_to 'Edit', edit_snippet_path(snippet) %></td>
+            <td><%= link_to 'Destroy', snippet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+      <% end %>
+      </tbody>
+  </table>
+</div>
 
-<%= user_signed_in? %>
 
-<% if user_signed_in? %>
-    <%= current_user.email %>
-    <%= link_to "Logout", "/logout" %>
-<% else %>
-    <%= link_to "GitHub", "/auth/github" %>
-<% end %>
-<br />
 
-<%= link_to 'New Snippet', new_snippet_path %>
+
+<%= link_to "Snippet erstellen", new_snippet_path, :class => "btn btn-mini btn btn-info" %>

@@ -1,6 +1,6 @@
 .CodeRay {
-  background-color: hsl(0,0%,95%);
-  border: 1px solid silver;
+  background-color: hsl(100,100%,100%);
+  border: 0px solid silver;
   color: black;
 }
 
@@ -14,7 +14,7 @@ table.CodeRay { border-collapse: collapse; width: 100%; padding: 2px; }
 table.CodeRay td { padding: 2px 4px; vertical-align: top; }
 
 .CodeRay .line-numbers {
-  background-color: hsl(180,65%,90%);
+  background-color: hsl(100,100%,100%);
   color: gray;
   text-align: right;
   -webkit-user-select: none;
@@ -23,8 +23,8 @@ table.CodeRay td { padding: 2px 4px; vertical-align: top; }
 }
 
 .CodeRay .line-numbers a {
-  background-color: hsl(180,65%,90%) !important;
-  color: gray !important;
+  background-color: hsl(0,0%,95%) !important;
+  color: black !important;
   text-decoration: none !important;
 }
 
@@ -127,6 +127,6 @@ table.CodeRay {
 }
 
 #main .CodeRay pre {
-  font-size: 13px ! important;
-  line-height: 15px;
+  font-size: 12px ! important;
+  line-height: 14px;
 }

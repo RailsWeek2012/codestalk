@@ -23,8 +23,8 @@ end
 gem "coderay"
 gem "RedCloth"
 gem 'jquery-rails'
+gem 'bootstrap-sass', '~> 2.0.4.0'
 gem 'omniauth'
-#gem 'omniauth-openid', :git => 'git://github.com/intridea/omniauth-openid.git'
 gem 'omniauth-github', :git => 'git://github.com/intridea/omniauth-github.git'
 #gem 'omniauth-twitter', :git => 'https://github.com/arunagw/omniauth-twitter.git'
 

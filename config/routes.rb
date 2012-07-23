@@ -8,7 +8,7 @@ Codestalk::Application.routes.draw do
   match '/auth/:provider/callback', :to => 'sessions#create'
   match '/auth/failure', :to => 'sessions#failure'
   get   '/login', :to => 'sessions#new', :as => :login
-  get   '/logout', :to => 'sessions#destroy', :as => :login
+  get   '/logout', :to => 'sessions#destroy', :as => :logout
 
 
   # The priority is based upon order of creation:
