@@ -1,24 +1,4 @@
-<div class="span2">
-  <!--Sidebar content-->
-  <ul class="nav nav-list">
-    <li>
-      <% if user_signed_in? %>
-          <a href="#">
-            <i class="icon-user"></i>Welcome <%= current_user.name %>!
-            <%= link_to '(Logout)', logout_path %>
-          </a>
-      <% else %>
-          <a href="/auth/github">
-            <i class="icon-lock"></i>
-            Login via GitHub
-          </a>
-      <% end %>
-
-    </li>
-  </ul>
-
-</div>
-<div class="span10">
+<div class="span12">
   <!--Body content-->
   <table class="table table-striped">
       <thead>
@@ -36,10 +16,11 @@
       <tbody>
       <% @snippets.each do |snippet| %>
           <tr>
-            <td><%= snippet.library %></td>
+            <td><%= snippet.library.title %></td>
+
             <td><%= snippet.title %></td>
             <td><%= snippet.description %></td>
-            <td><%= snippet.language %></td>
+            <td><%= snippet.language.title %></td>
             <td><%= codelines(snippet.source) %>
             </td>
             <td><%= link_to 'Show', snippet %></td>
@@ -54,4 +35,3 @@
 
 
 
-<%= link_to "Snippet erstellen", new_snippet_path, :class => "btn btn-mini btn btn-info" %>

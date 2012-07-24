@@ -1,6 +1,6 @@
-class CreateLibraries < ActiveRecord::Migration
+class CreateLanguages < ActiveRecord::Migration
   def change
-    create_table :libraries do |t|
+    create_table :languages do |t|
       t.string :title
       t.integer :user_id
       t.timestamps

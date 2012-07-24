@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120723143534) do
+ActiveRecord::Schema.define(:version => 20120724080231) do
 
   create_table "authorizations", :force => true do |t|
     t.string   "provider"
@@ -21,19 +21,25 @@ ActiveRecord::Schema.define(:version => 20120723143534) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "languages", :force => true do |t|
+    t.string   "title"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "libraries", :force => true do |t|
     t.string   "title"
-    t.string   "user_id"
-    t.string   "integer"
+    t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
   create_table "snippets", :force => true do |t|
-    t.string   "library"
+    t.integer  "library_id"
     t.string   "title"
     t.text     "description"
-    t.string   "language"
+    t.string   "language_id"
     t.text     "source"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false

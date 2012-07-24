@@ -1,0 +1,40 @@
+<div class="tabbable">
+  <ul class="nav nav-tabs">
+    <% @active_object = true %>
+    <% @library.snippets.each do |snip| %>
+        <% if @active_object %>
+          <li class="active"><a href="#tab<%= snip.id %>" data-toggle="tab"><%= snip.title %></a></li>
+          <% @active_object = false %>
+        <% else %>
+          <li><a href="#tab<%= snip.id %>" data-toggle="tab"><%= snip.title %></a></li>
+        <% end %>
+    <% end %>
+
+    <li class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-wrench"></i> Settings<b class="caret"></b></a>
+      <ul class="dropdown-menu">
+        <li><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li class="divider"></li>
+        <li><%= link_to "Snippet erstellen", new_snippet_path %></li>
+      </ul>
+    </li>
+  </ul>
+
+  <div class="tab-content">
+    <% @active_show = true %>
+    <% @library.snippets.each do |snip| %>
+      <% if @active_show %>
+        <div class="tab-pane active" id="tab<%= snip.id %>">
+          <p><%= render partial: 'snippets/show', :locals => { :snippet => snip} %></p>
+        </div>
+        <% @active_show = false %>
+      <% else %>
+        <div class="tab-pane" id="tab<%= snip.id %>">
+          <p><%= render partial: 'snippets/show', :locals => { :snippet => snip} %></p>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+</div>

@@ -1,5 +1,5 @@
 .CodeRay {
-  background-color: hsl(100,100%,100%);
+  #background-color: hsl(100,100%,90%);
   border: 0px solid silver;
   color: black;
 }
@@ -11,10 +11,10 @@
 span.CodeRay { white-space: pre; border: 0px; padding: 2px; }
 
 table.CodeRay { border-collapse: collapse; width: 100%; padding: 2px; }
-table.CodeRay td { padding: 2px 4px; vertical-align: top; }
+table.CodeRay td { padding: 0px 4px; vertical-align: top; }
 
 .CodeRay .line-numbers {
-  background-color: hsl(100,100%,100%);
+  #background-color: hsl(100,100%,100%);
   color: gray;
   text-align: right;
   -webkit-user-select: none;
@@ -116,17 +116,3 @@ table.CodeRay td { padding: 2px 4px; vertical-align: top; }
 .CodeRay .delete .delete { color: #c00; background:transparent; font-weight:bold }
 .CodeRay .change .change { color: #88f }
 .CodeRay .head .head { color: #f4f }
-
-table.CodeRay {
-  width: auto;
-}
-
-#main .example {
-  width: 960px;
-  overflow: auto;
-}
-
-#main .CodeRay pre {
-  font-size: 12px ! important;
-  line-height: 14px;
-}

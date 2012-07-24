@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<div class="accordion" id="accordion2">
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse1">
+        Source Code
+      </a>
+    </div>
+    <div id="collapse1" class="accordion-body collapse in">
+      <div class="accordion-inner">
+        <%= code(snippet.source, snippet.language.title).html_safe %>
+      </div>
+    </div>
+  </div>
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse2">
+        Details
+      </a>
+    </div>
+    <div id="collapse2" class="accordion-body collapse">
+      <div class="accordion-inner">
+        <p>
+          <b>Library:</b>
+          <%= snippet.library.title %>
+        </p>
+        <p>
+          <b>Title:</b>
+          <%= snippet.title %>
+        </p>
+        <p>
+          <b>Description:</b>
+          <%= snippet.description %>
+        </p>
+        <p>
+          <b>Language:</b>
+          <%= snippet.language.title %>
+        </p>
+        <%= link_to 'Edit', edit_snippet_path(snippet) %> |
+        <%= link_to 'Back', snippets_path %>
+      </div>
+    </div>
+  </div>
+</div>

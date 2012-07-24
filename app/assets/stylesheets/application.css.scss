@@ -13,3 +13,41 @@
  */
 @import "coderay";
 @import "bootstrap";
+
+select{
+  width: 100%;
+}
+
+.row {
+  margin-left: 0;
+}
+
+input, textarea {
+  width: 100%;
+}
+
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+.sidebar-nav {
+  padding: 9px 0;
+}
+.face
+{
+  float: left;
+  border-right: solid 1px #DEDEDE;
+  border-bottom: solid 1px #DEDEDE;
+  width: 60px;
+  height: 60px;
+  padding: 4px;
+  background-color: white;
+  margin-right: 5px;
+}
+.span7 img
+{
+  max-width:550px;
+  border: 1px solid #CCC;
+  padding: 9px;
+  background: white;
+}

@@ -2,7 +2,7 @@
 
 <p>
   <b>Library:</b>
-  <%= @snippet.library %>
+  <%= @snippet.library.title %>
 </p>
 
 <p>
@@ -17,13 +17,13 @@
 
 <p>
   <b>Language:</b>
-  <%= @snippet.language %>
+  <%= @snippet.language.title %>
 </p>
 
 <p>
   <b>Source:</b>
 
-  <%= code(@snippet.source, @snippet.language).html_safe %>
+  <%= code(@snippet.source, @snippet.language.title).html_safe %>
 </p>
 
 

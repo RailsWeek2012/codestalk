@@ -1,62 +1,125 @@
 <!DOCTYPE html>
-<html>
+<html lang="de">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
   <title>codeStalk</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="codeStalk - Source Code Management System">
+  <meta name="author" content="Konstantin Schuler">
   <%= stylesheet_link_tag "coderay", "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
-  <script>
-      $(document).ready(function(){
-      });
-  </script>
-<body>
 
-<div class="container-fluid">
-  <div class="row-fluid">
-      <div class="span12">
-        <!-- Navbar -->
-        <div class="navbar">
-          <div class="navbar-inner">
-            <div class="container">
+  <!-- HTML5 for IE6-8 support of HTML5 elements -->
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+</head>
 
-              <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </a>
+<body style="background:url(http://dl.dropbox.com/u/60731690/grids.gif)">
 
-              <a class="brand" href="#">codeStalk</a>
-
-              <div class="nav-collapse">
-              </div>
-
-            </div>
-          </div>
-        </div>
-
-        <p>
-          <% if flash[:alert] %>
-            <div class="alert alert-error">
-              <%= flash[:alert] %>
-            </div>
-        <% end %>
-        </p>
-
-        <p>
-          <% if flash[:notice] %>
-            <div class="alert alert-success">
-              <%= flash[:notice] %>
-            </div>
-        <% end %>
-        </p>
-
-        <div class="row">
-          <%= yield %>
-        </div>
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <a class="brand" href="#">codeStalk</a>
+      <div class="nav-collapse">
+        <ul class="nav">
+          <li class="active"><%= link_to "Snippets", snippets_url %></li>
+        </ul>
       </div>
+    </div>
   </div>
 </div>
+
+<div class="container">
+  <div class="row-fluid">
+    <div class="span2">
+      <div class="well sidebar-nav">
+        <ul class="nav nav-list">
+          <li class="nav-header">Navigation</li>
+          <li>
+            <div style='overflow:auto'>
+              <% if user_signed_in? %>
+                <i class="icon-user"></i><%= current_user.name %><br>
+                <i class="icon-off"></i><%= link_to 'Logout', logout_path %>
+              <% else %>
+                  <a href="/auth/github">
+                    <i class="icon-lock"></i>
+                    GitHub
+                  </a>
+              <% end %>
+            </div>
+          </li>
+
+          <% if user_signed_in? %>
+              <li class="nav-header">Snippets</li>
+              <li>
+                <% Library.all.each do |lib| %>
+                    <%= link_to lib.title, lib %>
+                    <ul>
+                      <% lib.snippets.each do |snip| %>
+                          <li>
+                            <%= snip.title %>
+                          </li>
+                      <% end %>
+                    </ul>
+                <% end %>
+              </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+
+    <div class="span10">
+
+      <% if flash[:alert] %>
+          <div class="alert alert-error">
+            <a class="close" data-dismiss="alert" href="#">×</a>
+            <h4 class="alert-heading">Achtung!</h4>
+            <%= flash[:alert] %>
+          </div>
+      <% end %>
+
+      <% if flash[:notice] %>
+          <div class="alert alert-success">
+            <a class="close" data-dismiss="alert" href="#">×</a>
+            <%= flash[:notice] %>
+          </div>
+      <% end %>
+
+      <div class="well">
+        <div class="row-fluid">
+            <%= yield %>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <hr>
+  <footer>
+    <div class="container">
+      <p>&copy; 2012 Konstantin Schuler</p>
+    </div>
+  </footer>
+</div>
+
+<script src="http://twitter.github.com/bootstrap/assets/js/jquery.js"></script>
+<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-transition.js"></script>
+<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-alert.js"></script>
+<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-modal.js"></script>
+<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-dropdown.js"></script>
+<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-scrollspy.js"></script>
+<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-tab.js"></script>
+<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-tooltip.js"></script>
+<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-popover.js"></script>
+<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-button.js"></script>
+<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-collapse.js"></script>
+<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-carousel.js"></script>
+<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-typeahead.js"></script>
 
 </body>
 </html>
