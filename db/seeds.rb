@@ -7,94 +7,74 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-u = User.create name: "KS", email: "konstantin.schuler@mni.thm.de"
+u = User.create name: "Konstantin Schuler", email: "konstantin.schuler@mni.thm.de"
 Authorization.create provider: "github", uid: "1998180", user: u
-
-oop = Library.create title: "OOP", user: u
-pis = Library.create title: "PIS", user: u
-
 java = Language.create title: "java", user: u
 css = Language.create title: "css", user: u
+ruby = Language.create title: "ruby", user: u
 
-Snippet.create user: u, library: oop, title: "Bsp 1", description: "Bla", language: java, source: <<SOURCE
-    package test;
+#ror = Library.create title: "ROR", user: u
+pis = Library.create title: "PIS", user: u
 
-    import java.io.*;
-    public class Temperatur {
+hue01 = Project.create title: "Hausübung 1", description: "Doppelwürfel", library: pis, user: u
+hue02 = Project.create title: "Hausübung 2", description: "Client-/Server-Chat", library: pis , user: u
+#rubycode = Project.create title: "RubyCode", user: u
 
-      public Temperatur() {
-      }
+client = Package.create title: "chatClient", description: "Client", project: hue02, user: u
+server = Package.create title: "chatServer", description: "Server", project: hue02, user: u
 
-      public static void main(String[] args) throws Exception {
-        BufferedReader in = new BufferedReader(new InputStreamReader( System.in ) );
-        System.out.print( "Bitte geben Sie eine Temperatur in °Fahrenheit ein: " );
-        String line = in.readLine();
-        int temperaturF = Integer.parseInt(line);
-        int temperaturC = (int)(5.0/9.0*(temperaturF- 32));
-        System.out.println
-          ("Ergebnis: " + temperaturF + "°F entspricht "+ temperaturC + "°C.");
-      }
-    }
-SOURCE
-Snippet.create user: u, library: pis, title: "Bsp 2", description: "Bla", language: css, source: <<SOURCE
-.CodeRay {
-  background-color: hsl(0,0%,95%);
-  border: 1px solid silver;
-  color: black;
-}
+Snippet.create user: u, package: client, title: "AutorunClient.java", description: "Startpunkt des Chat-Clients", language: java, source: <<SOURCE
+package chatClient;
 
-.CodeRay pre {
-  margin: 0px;
-}
+import java.io.IOException;
+import java.net.UnknownHostException;
 
-span.CodeRay { white-space: pre; border: 0px; padding: 2px; }
+public class AutorunClient {
 
-table.CodeRay { border-collapse: collapse; width: 100%; padding: 2px; }
-table.CodeRay td { padding: 2px 4px; vertical-align: top; }
+	/**
+	 * Startpunkt des Chat-Clients
+	 * @param args Programm-Argumente der IDE
+	 * @throws UnknownHostException IP-Adresse kann nicht ermittelt werden
+	 * @throws IOException Fehlgeschlagene oder unterbrochenen E/A-Operation
+	 */
+	public static void main(String[] args) throws UnknownHostException, IOException {
 
-.CodeRay .line-numbers {
-  background-color: hsl(180,65%,90%);
-  color: gray;
-  text-align: right;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  user-select: none;
-}
-
-.CodeRay .line-numbers a {
-  background-color: hsl(180,65%,90%) !important;
-  color: gray !important;
-  text-decoration: none !important;
-}
-
-table.CodeRay {
-  width: auto;
-}
-
-#main .example {
-  width: 960px;
-  overflow: auto;
-}
-
-#main .CodeRay pre {
-  font-size: 13px ! important;
-  line-height: 15px;
+		new ClientGUI();
+	}
 }
 SOURCE
-Snippet.create user: u, library: pis, title: "Bsp 3", description: "Bla", language: java, source: <<SOURCE
-import java.io.*;
-class Head {
-  public static void main (String args[]){
-    String zeile;
-    try {
-      BufferedReader in = new BufferedReader(new FileReader(args[0]));
-      for (int i = 0; i < 10; i++){
-        zeile = in.readLine();
-        System.out.println(zeile);
-      }
-    } catch (IOException e){
-        System.err.println("Fehler beim Lesen  von " + args[0]);
-    }
-  }
+Snippet.create user: u, package: server, title: "TextAreaWriter.java", description: "Ein PrintWriter, der eine TextArea als Ausgabe nutzt.", language: java, source: <<SOURCE
+package chatClient;
+
+import java.io.IOException;
+import java.io.Writer;
+import javax.swing.JTextArea;
+
+public final class TextAreaWriter extends Writer {
+
+	private final JTextArea textArea;
+
+	/**
+	 * TextAreaWriter: Ein PrintWriter, der eine TextArea als Ausgabe nutzt.
+	 * (Ein bequemer Weg, um in der GUI die Ausgabe direkt als Text zu schreiben.)
+	 * @param textArea JTextArea: Ein Objekt in das geschrieben wird
+	 */
+	public TextAreaWriter(final JTextArea textArea) {
+		this.textArea = textArea;
+	}
+
+    @Override
+    public void flush(){ }
+
+    @Override
+    public void close(){ }
+
+	@Override
+	public void write(char[] cbuf, int off, int len) throws IOException {
+		textArea.append(new String(cbuf, off, len));
+	}
 }
 SOURCE
+
+
+

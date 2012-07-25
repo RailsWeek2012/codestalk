@@ -1,29 +1,17 @@
 <p id="notice"><%= notice %></p>
 
-<div class="accordion" id="accordion2">
+<div class="accordion" id="accordion<%= snippet.id %>">
   <div class="accordion-group">
     <div class="accordion-heading">
-      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse1">
-        Source Code
-      </a>
-    </div>
-    <div id="collapse1" class="accordion-body collapse in">
-      <div class="accordion-inner">
-        <%= code(snippet.source, snippet.language.title).html_safe %>
-      </div>
-    </div>
-  </div>
-  <div class="accordion-group">
-    <div class="accordion-heading">
-      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse2">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion<%= snippet.id %>" href="#collapse<%= snippet.id %>code">
         Details
       </a>
     </div>
-    <div id="collapse2" class="accordion-body collapse">
+    <div id="collapse<%= snippet.id %>code" class="accordion-body collapse">
       <div class="accordion-inner">
         <p>
           <b>Library:</b>
-          <%= snippet.library.title %>
+          <%= snippet.package.title %>
         </p>
         <p>
           <b>Title:</b>
@@ -39,6 +27,30 @@
         </p>
         <%= link_to 'Edit', edit_snippet_path(snippet) %> |
         <%= link_to 'Back', snippets_path %>
+      </div>
+    </div>
+  </div>
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion<%= snippet.id %>" href="#collapse<%= snippet.id %>settings">
+        Source Code
+      </a>
+    </div>
+    <div id="collapse<%= snippet.id %>settings" class="accordion-body collapse in">
+      <div class="accordion-inner">
+        <%= code(snippet.source, snippet.language.title).html_safe %>
+      </div>
+    </div>
+  </div>
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion<%= snippet.id %>" href="#collapse<%= snippet.id %>comments">
+        Comments
+      </a>
+    </div>
+    <div id="collapse<%= snippet.id %>comments" class="accordion-body collapse in">
+      <div class="accordion-inner">
+        {Kommentare}
       </div>
     </div>
   </div>

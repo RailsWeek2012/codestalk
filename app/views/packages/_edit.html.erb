@@ -1,0 +1,28 @@
+<div class="modal-body">
+<%= form_for(@package) do |f| %>
+    <% if @package.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@library.errors.count, "error") %> prohibited this snippet from being saved:</h2>
+            <ul>
+              <% @library.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.text_field :title, :title => "Title" %>
+    </div>
+      <div class="field">
+        <%= f.text_area :description %>
+      </div>
+  </div>
+
+      <div class="modal-footer">
+        <a href="#" class="btn" data-dismiss="modal">Close</a>
+        <%= f.submit "Save changes", :class => "btn btn-primary" %>
+      </div>
+
+  <% end %>
+</div>

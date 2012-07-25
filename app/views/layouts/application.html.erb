@@ -43,7 +43,7 @@
           <li>
             <div style='overflow:auto'>
               <% if user_signed_in? %>
-                <i class="icon-user"></i><%= current_user.name %><br>
+                <i class="icon-user"></i><%= link_to current_user.name, user_show_path %><br>
                 <i class="icon-off"></i><%= link_to 'Logout', logout_path %>
               <% else %>
                   <a href="/auth/github">
@@ -54,15 +54,34 @@
             </div>
           </li>
 
+          <li class="nav-header">Create</li>
+          <li>
+            <div style='overflow:auto'>
+              <% if user_signed_in? %>
+                  <i class="icon-book"></i><%= link_to "New Library", new_library_path %><br>
+                  <i class="icon-bookmark"></i><%= link_to 'New Project', snippets_path %><br>
+                  <i class="icon-inbox"></i><%= link_to 'New Package', snippets_path %><br>
+                  <i class="icon-file"></i><%= link_to "New Snippet", new_snippet_path %>
+              <% end %>
+            </div>
+          </li>
+
           <% if user_signed_in? %>
               <li class="nav-header">Snippets</li>
               <li>
                 <% Library.all.each do |lib| %>
                     <%= link_to lib.title, lib %>
                     <ul>
-                      <% lib.snippets.each do |snip| %>
+                      <% lib.projects.each do |project| %>
                           <li>
-                            <%= snip.title %>
+                            <%= link_to project.title, project %>
+                            <ul>
+                              <% project.packages.each do |package| %>
+                                  <li>
+                                    <%= link_to package.title, package %>
+                                  </li>
+                              <% end %>
+                            </ul>
                           </li>
                       <% end %>
                     </ul>
@@ -78,7 +97,7 @@
       <% if flash[:alert] %>
           <div class="alert alert-error">
             <a class="close" data-dismiss="alert" href="#">×</a>
-            <h4 class="alert-heading">Achtung!</h4>
+            <h4 class="alert-heading">Attention!</h4>
             <%= flash[:alert] %>
           </div>
       <% end %>

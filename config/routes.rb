@@ -1,11 +1,23 @@
 Codestalk::Application.routes.draw do
 
+  resources :packages
+
+  resources :projects
+
+  get "projects/edit"
+
+  get "projects/new"
+
+  get "user/edit"
+
+  get "user/show"
+
   get "sessions/new"
   get "sessions/create"
   get "sessions/failure"
 
   resources :snippets
-  resources :libraries, except: [:index]
+  resources :libraries, except: [:index, :edit]
 
   match '/auth/:provider/callback', :to => 'sessions#create'
   match '/auth/failure', :to => 'sessions#failure'

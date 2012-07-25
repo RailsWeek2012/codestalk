@@ -65,7 +65,7 @@ class SnippetsController < ApplicationController
 
     respond_to do |format|
       if @snippet.update_attributes(params[:snippet])
-        format.html { redirect_to @snippet, notice: 'Snippet was successfully updated.' }
+        format.html { redirect_to @snippet.package, notice: 'Snippet was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
