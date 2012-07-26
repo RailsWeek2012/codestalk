@@ -1,9 +1,5 @@
 class SessionsController < ApplicationController
 
-  def new
-
-  end
-
   def create
     auth_hash = request.env['omniauth.auth']
 
@@ -12,7 +8,6 @@ class SessionsController < ApplicationController
     if @authorization
       redirect_to snippets_path,
       notice: "Welcome back #{@authorization.user.name}! You have already signed up."
-      #render :text => "Welcome back #{@authorization.user.name}! You have already signed up."
     else
       user = User.new :name => auth_hash["info"]["name"], :email => auth_hash["info"]["email"]
       user.authorization.build :provider => auth_hash["provider"], :uid => auth_hash["uid"]
@@ -20,7 +15,6 @@ class SessionsController < ApplicationController
 
       redirect_to snippets_path,
       notice: "Hi #{user.name}! You've signed up."
-      #render :text => "Hi #{user.name}! You've signed up."
     end
     session[:user_id] = @authorization.user.id
 
@@ -30,13 +24,11 @@ class SessionsController < ApplicationController
     session[:user_id] = nil
     redirect_to snippets_path,
     notice: "You've logged out!"
-    #render :text => "You've logged out!"
   end
 
   def failure
     redirect_to snippets_path,
     alert: "Sorry, but you didn't allow access to our app!"
-    #render :text => "Sorry, but you didn't allow access to our app!"
   end
 
 end

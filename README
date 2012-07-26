@@ -1,0 +1,19 @@
+codeStrack von Konstantin Schuler
+
+::gems
+    CodeRay             http://coderay.rubychan.de/
+    RedCloth            http://redcloth.org/
+    bootstrap-sass      http://twitter.github.com/bootstrap/
+    OmniAuth            http://github.com/intridea/omniauth/
+    OmniAuth-GitHub     http://github.com/intridea/omniauth-github/
+
+::quellangaben
+    Implementierung von CodeRay mit Hilfe von RailsCasts-Tutorials gemacht
+        http://railscasts.com/episodes/207-syntax-highlighting
+    Die CSS-Datei für CodeRay
+        http://coderay.rubychan.de/stylesheets/coderay.css
+    Implementierung von OmniAuth mit Hilfe von RailsCasts-Tutorials gemacht
+        http://railscasts.com/episodes/235-omniauth-part-1
+        http://railscasts.com/episodes/236-omniauth-part-2
+
+/eof
