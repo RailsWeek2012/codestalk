@@ -3,4 +3,5 @@ class Snippet < ActiveRecord::Base
   belongs_to :user
   belongs_to :package
   belongs_to :language
+  has_many :comments
 end

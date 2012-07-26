@@ -58,9 +58,9 @@
           <li>
             <div style='overflow:auto'>
               <% if user_signed_in? %>
-                  <i class="icon-book"></i><%= link_to "New Library", new_library_path %><br>
-                  <i class="icon-bookmark"></i><%= link_to 'New Project', snippets_path %><br>
-                  <i class="icon-inbox"></i><%= link_to 'New Package', snippets_path %><br>
+                  <i class="icon-book"></i><%=  link_to "New Library", new_library_path %><br>
+                  <i class="icon-bookmark"></i><%= link_to 'New Project', new_project_path %><br>
+                  <i class="icon-inbox"></i><%= link_to 'New Package', new_package_path %><br>
                   <i class="icon-file"></i><%= link_to "New Snippet", new_snippet_path %>
               <% end %>
             </div>
@@ -70,11 +70,13 @@
               <li class="nav-header">Snippets</li>
               <li>
                 <% Library.all.each do |lib| %>
-                    <%= link_to lib.title, lib %>
+                    <%= lib.title %>
+                    <%#= link_to lib.title, lib %>
                     <ul>
                       <% lib.projects.each do |project| %>
                           <li>
-                            <%= link_to project.title, project %>
+                            <%= project.title %>
+                            <%#= link_to project.title, project %>
                             <ul>
                               <% project.packages.each do |package| %>
                                   <li>

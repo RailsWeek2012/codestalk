@@ -1,4 +1,7 @@
 class PackagesController < ApplicationController
+
+  before_filter :require_login!
+
   # GET /packages
   # GET /packages.json
   def index
@@ -14,6 +17,7 @@ class PackagesController < ApplicationController
   # GET /packages/1.json
   def show
     @package = Package.find(params[:id])
+    session[:return_to] = request.env["REQUEST_URI"]
 
     respond_to do |format|
       format.html # show.html.erb
@@ -80,4 +84,14 @@ class PackagesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
+
+  def require_login!
+    unless user_signed_in?
+      redirect_to login_path,
+                  alert: "Bitte melden Sie sich zuerst an."
+    end
+  end
+
 end

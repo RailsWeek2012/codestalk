@@ -1,7 +1,8 @@
 class User < ActiveRecord::Base
   attr_accessible :email, :name
-  has_many :authorizations
+  has_one :authorization
   has_many :snippets
+  has_many :comments
   validates :name, :email, :presence => true
 
   def add_provider(auth_hash)

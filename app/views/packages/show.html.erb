@@ -2,13 +2,30 @@
   <li>
     <%= link_to "Home", snippets_path %><span class="divider">/</span>
   </li>
+  <li>
+    <%= link_to @package.project.library.title, library_path %><span class="divider">/</span>
+  </li>
+  <li>
+    <%= link_to @package.project.title, project_path %><span class="divider">/</span>
+  </li>
   <li class="active">
-    <%= link_to @package.title, library_path %><span class="divider">&rArr; <%= @package.description %></span>
+    <%= link_to @package.title, package_path %><span class="divider">&rArr; <%= @package.description %></span>
   </li>
 </ul>
 
 <div class="tabbable">
   <ul class="nav nav-tabs">
+
+    <li class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-wrench"></i> Settings<b class="caret"></b></a>
+      <ul class="dropdown-menu">
+        <li><a data-toggle="modal" href="#modal_pac_id<%= @package.id %>">Edit Package</a></li>
+        <%= link_to 'Delete', @package, method: :delete, data: { confirm: 'Are you sure? All related snippets will be deleted!' } %>
+        <li class="divider"></li>
+        <li><%= link_to "Snippet erstellen", new_snippet_path %></li>
+      </ul>
+    </li>
+
     <% @active_object = true %>
     <% @package.snippets.each do |snip| %>
         <% if @active_object %>
@@ -20,21 +37,10 @@
 
         <script>
             $(function ()
-            { $("#href_id<%= snip.id %>").popover({placement: 'bottom', title: '<%= snip.title %> in <%= snip.language.title %>', content: "<%= snip.description %>"});
+            { $("#href_id<%= snip.id %>").popover({placement: 'bottom', title: '<%= snip.title %>', content: "<%= snip.description %>"});
             });
         </script>
-
     <% end %>
-
-    <li class="dropdown">
-      <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-wrench"></i> Settings<b class="caret"></b></a>
-      <ul class="dropdown-menu">
-        <li><a data-toggle="modal" href="#modal_lib_id<%= @package.id %>">Edit Library</a></li>
-        <%= link_to 'Delete', @library, method: :delete, data: { confirm: 'Are you sure? All related snippets will be deleted!' } %>
-        <li class="divider"></li>
-        <li><%= link_to "Snippet erstellen", new_snippet_path %></li>
-      </ul>
-    </li>
   </ul>
 
   <div class="tab-content">
@@ -53,32 +59,12 @@
     <% end %>
   </div>
 
-  <div class="modal hide" id="modal_lib_id<%= @package.id %>">
+  <div class="modal hide" id="modal_pac_id<%= @package.id %>">
     <div class="modal-header">
       <button type="button" class="close" data-dismiss="modal">×</button>
-      <h3>Edit Library <%= @package.title %></h3>
+      <h3>Edit Package <%= @package.title %></h3>
     </div>
     <%= render 'edit' %>
   </div>
 
 </div>
-
-
-
-
-
-<p id="notice"><%= notice %></p>
-
-<p>
-  <b>Title:</b>
-  <%= @package.title %>
-</p>
-
-<p>
-  <b>Description:</b>
-  <%= @package.description %>
-</p>
-
-
-<%= link_to 'Edit', edit_package_path(@package) %> |
-<%= link_to 'Back', packages_path %>

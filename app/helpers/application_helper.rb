@@ -10,4 +10,13 @@ module ApplicationHelper
     CodeRay.scan(text, :c).loc
   end
 
+  private
+
+  def require_login!
+    unless user_signed_in?
+      redirect_to login_path,
+                  alert: "Bitte melden Sie sich zuerst an."
+    end
+  end
+
 end

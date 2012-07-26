@@ -38,4 +38,5 @@ class SessionsController < ApplicationController
     alert: "Sorry, but you didn't allow access to our app!"
     #render :text => "Sorry, but you didn't allow access to our app!"
   end
+
 end
