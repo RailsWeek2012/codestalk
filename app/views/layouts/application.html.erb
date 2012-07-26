@@ -48,23 +48,23 @@
               <% else %>
                   <a href="/auth/github">
                     <i class="icon-lock"></i>
-                    GitHub
+                    Login
                   </a>
               <% end %>
             </div>
           </li>
 
-          <li class="nav-header">Create</li>
-          <li>
-            <div style='overflow:auto'>
-              <% if user_signed_in? %>
-                  <i class="icon-book"></i><%=  link_to "New Library", new_library_path %><br>
-                  <i class="icon-bookmark"></i><%= link_to 'New Project', new_project_path %><br>
-                  <i class="icon-inbox"></i><%= link_to 'New Package', new_package_path %><br>
-                  <i class="icon-file"></i><%= link_to "New Snippet", new_snippet_path %>
-              <% end %>
-            </div>
-          </li>
+          <% if user_signed_in? %>
+            <li class="nav-header">Create</li>
+            <li>
+              <div style='overflow:auto'>
+                <i class="icon-book"></i><%=  link_to "New Library", new_library_path %><br>
+                <i class="icon-bookmark"></i><%= link_to 'New Project', new_project_path %><br>
+                <i class="icon-inbox"></i><%= link_to 'New Package', new_package_path %><br>
+                <i class="icon-file"></i><%= link_to "New Snippet", new_snippet_path %>
+              </div>
+            </li>
+          <% end %>
 
           <% if user_signed_in? %>
               <li class="nav-header">Snippets</li>
@@ -123,7 +123,7 @@
   <hr>
   <footer>
     <div class="container">
-      <p>&copy; 2012 Konstantin Schuler</p>
+      <p>&copy; 2012</p>
     </div>
   </footer>
 </div>

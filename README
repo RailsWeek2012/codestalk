@@ -1,13 +1,13 @@
-codeStrack von Konstantin Schuler
+codeStrack
 
-::gems
+==gems
     CodeRay             http://coderay.rubychan.de/
     RedCloth            http://redcloth.org/
     bootstrap-sass      http://twitter.github.com/bootstrap/
     OmniAuth            http://github.com/intridea/omniauth/
     OmniAuth-GitHub     http://github.com/intridea/omniauth-github/
 
-::quellangaben
+==quellangaben
     Implementierung von CodeRay mit Hilfe von RailsCasts-Tutorials gemacht
         http://railscasts.com/episodes/207-syntax-highlighting
     Die CSS-Datei für CodeRay
