@@ -1,0 +1,36 @@
+<ul class="nav nav-tabs">
+
+  <li class="dropdown">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-wrench"></i> Settings<b class="caret"></b></a>
+    <ul class="dropdown-menu">
+      <li><a data-toggle="modal" href="#modal_pac_id<%= @package.id %>">Edit Package</a></li>
+      <%= link_to 'Delete', @package, method: :delete, data: { confirm: 'Are you sure? All related snippets will be deleted!' } %>
+      <li class="divider"></li>
+      <li><%= link_to "Snippet erstellen", new_snippet_path %></li>
+    </ul>
+  </li>
+
+  <% @active_object = true %>
+  <% @package.snippets.each do |snip| %>
+      <% if @active_object %>
+          <li class="active"><a href="#tab<%= snip.id %>" id="href_id<%= snip.id %>" rel="popover" data-toggle="tab"><%= snip.title %></a></li>
+          <% @active_object = false %>
+      <% else %>
+          <li><a href="#tab<%= snip.id %>" id="href_id<%= snip.id %>" rel="popover" data-toggle="tab"><%= snip.title %></a></li>
+      <% end %>
+
+      <script>
+          $(function ()
+          { $("#href_id<%= snip.id %>").popover({placement: 'bottom', title: '<%= snip.title %>', content: "<%= snip.description %>"});
+          });
+      </script>
+  <% end %>
+</ul>
+
+<div class="modal hide" id="modal_pac_id<%= @package.id %>">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">×</button>
+    <h3>Edit Package <%= @package.title %></h3>
+  </div>
+  <%= render 'packages/edit' %>
+</div>

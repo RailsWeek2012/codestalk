@@ -6,7 +6,7 @@ class LibrariesController < ApplicationController
     @libraries = Library.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html # _index.html.erb
       format.json { render json: @packages }
     end
   end

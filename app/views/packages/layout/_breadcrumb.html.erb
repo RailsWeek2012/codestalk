@@ -1,0 +1,14 @@
+<ul class="breadcrumb">
+  <li>
+    <%= link_to "Home", snippets_path %><span class="divider">/</span>
+  </li>
+  <li>
+    <%= link_to @package.project.library.title, library_path %><span class="divider">/</span>
+  </li>
+  <li>
+    <%= link_to @package.project.title, project_path %><span class="divider">/</span>
+  </li>
+  <li class="active">
+    <%= link_to @package.title, package_path %><span class="divider">&rArr; <%= @package.description %></span>
+  </li>
+</ul>

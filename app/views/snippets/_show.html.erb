@@ -4,8 +4,6 @@
   <%= link_to 'Delete', snippet, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-mini btn-danger" %>
 </p>
 
-
-
 <div class="accordion" id="accordion<%= snippet.id %>">
   <div class="accordion-group">
 
@@ -62,7 +60,7 @@
         <table class="table table-striped table-condensed">
           <thead>
           <% if snippet.comments.blank? %>
-                      <i>No comments yet...</i>
+              <i>No comments yet...</i>
           <% else %>
               <% snippet.comments.each do |comment| %>
                   <tr>
@@ -81,7 +79,7 @@
                   </tr>
               <% end %>
           <% end %>
-        </table>
+          </table>
       </div>
     </div>
   </div>

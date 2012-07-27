@@ -8,12 +8,14 @@ codeStrack
     OmniAuth-GitHub     http://github.com/intridea/omniauth-github/
 
 ==quellangaben
-    Implementierung von CodeRay mit Hilfe von RailsCasts-Tutorials gemacht
+    Implementierung von CodeRay mit Hilfe von RailsCasts-Tutorials
         http://railscasts.com/episodes/207-syntax-highlighting
     Die CSS-Datei für CodeRay
         http://coderay.rubychan.de/stylesheets/coderay.css
-    Implementierung von OmniAuth mit Hilfe von RailsCasts-Tutorials gemacht
+    Implementierung von OmniAuth mit Hilfe von RailsCasts-Tutorials
         http://railscasts.com/episodes/235-omniauth-part-1
         http://railscasts.com/episodes/236-omniauth-part-2
+    Layout-Anpassung
+        http://www.w3resource.com/twitter-bootstrap/layout-tutorial.php
 
 /eof

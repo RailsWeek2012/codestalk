@@ -1,6 +1,6 @@
 Codestalk::Application.routes.draw do
 
-  root :to => 'snippets#index'
+  #root :to => 'snippets#index'
 
   resources :comments, except: [:index]
   resources :libraries
